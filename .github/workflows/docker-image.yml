@@ -57,8 +57,8 @@ jobs:
       # Step 4: Build Docker image
       - name: Build and push Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/user-management:${{ github.sha }} .
-          docker push ${{ secrets.DOCKER_USERNAME }}/user-management:${{ github.sha }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/user-management:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/user-management:latest
 
       # (Optional) Step 5: Deploy to AWS or another cloud service
       # This is where you can add deployment steps depending on your environment
