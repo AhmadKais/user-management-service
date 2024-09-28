@@ -60,9 +60,9 @@ def update_user(user_id):
                 ':e': data.get('email')
             }
         )
-        return (jsonify({
+        return jsonify({
             'message': 'User updated successfully'
-        }))
+        })
     except Exception as e:
         return (jsonify({
             'error': str(e), 'message': 'Error updating user'
