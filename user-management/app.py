@@ -24,11 +24,13 @@ def create_user():
             'name': data['name']
         }
     )
-    return jsonify({'message': 'User created,OK', 'user_id': user_id}), 201
+    return jsonify({'message': 'Usr created,OK', 'user_id': user_id}), 201
 
 
 # Get a user by ID
 @app.route('/users/<string:user_id>', methods=['GET'])
+
+
 def get_user(user_id):
     response = table.get_item(Key={'user_id': user_id})
     user = response.get('Item')
@@ -56,9 +58,11 @@ def update_user(user_id):
                 ':e': data.get('email')
             }
         )
-        return jsonify({'message': 'User updated successfully'})
+        return (
+            jsonify({'message': 'User updated successfully'}))
     except Exception as e:
-        return jsonify({'error': str(e), 'message': 'Error updating user'}), 500
+        return (
+            jsonify({'error': str(e), 'message': 'Error updating user'}), 500)
 
 # Delete a user
 @app.route('/users/<string:user_id>', methods=['DELETE'])
@@ -67,7 +71,8 @@ def delete_user(user_id):
         table.delete_item(Key={'user_id': user_id})
         return jsonify({'message': 'User deleted successfully'})
     except Exception as e:
-        return jsonify({'error': str(e), 'message': 'Error deleting user'}), 500
+        return (
+            jsonify({'error': str(e), 'message': 'Error deleting user'}), 500)
 
 
 if __name__ == '__main__':
