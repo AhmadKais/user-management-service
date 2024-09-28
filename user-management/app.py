@@ -24,7 +24,7 @@ def create_user():
             'name': data['name']
         }
     )
-    return jsonify({'message': 'User created successfully', 'user_id': user_id}), 201
+    return jsonify({'message': 'User created,OK', 'user_id': user_id}), 201
 
 
 # Get a user by ID
