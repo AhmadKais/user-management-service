@@ -60,13 +60,14 @@ def update_user(user_id):
                 ':e': data.get('email')
             }
         )
-        return jsonify({
+        return (jsonify({
             'message': 'User updated successfully'
-        })
+        }))
     except Exception as e:
-        return jsonify({
+        return (jsonify({
             'error': str(e), 'message': 'Error updating user'
-        }), 500
+        }), 500)
+
 
 # Delete a user
 @app.route('/users/<string:user_id>', methods=['DELETE'])
