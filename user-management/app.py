@@ -11,7 +11,6 @@ table = dynamodb.Table('UsersTable')
 
 # Create a new user
 @app.route('/users', methods=['POST'])
-
 def create_user():
     data = request.get_json()  # Get data sent in the request body
     user_id = str(uuid.uuid4())  # Generate a unique ID for the user
@@ -30,7 +29,6 @@ def create_user():
 
 # Get a user by ID
 @app.route('/users/<string:user_id>', methods=['GET'])
-
 def get_user(user_id):
     response = table.get_item(Key={'user_id': user_id})
     user = response.get('Item')
@@ -72,10 +70,14 @@ def update_user(user_id):
 def delete_user(user_id):
     try:
         table.delete_item(Key={'user_id': user_id})
-        return jsonify({'message': 'User deleted successfully'})
+        return jsonify({
+            'message': 'User deleted successfully'
+        })
     except Exception as e:
         return (
-            jsonify({'error': str(e), 'message': 'Error deleting user'}), 500)
+            jsonify({
+                'error': str(e), 'message': 'Error deleting user'
+            }), 500)
 
 
 if __name__ == '__main__':
